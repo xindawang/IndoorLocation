@@ -1,16 +1,19 @@
 package com.example.acer.indoorlocation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,15 +21,20 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class WifiListActivity extends AppCompatActivity {
 
     private WifiManager wifiManager;
     List<ScanResult> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.wifi_list);
         init();
+    }
+
+    @Override
+    public void onBackPressed(){
+        finish();
     }
 
     private void init() {
@@ -84,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             // TODO Auto-generated method stub
             View view = null;
-            view = inflater.inflate(R.layout.item_wifi_list, null);
+            view = inflater.inflate(R.layout.wifi_list_item, null);
             ScanResult scanResult = list.get(position);
             TextView textView = (TextView) view.findViewById(R.id.textView);
             textView.setText(scanResult.SSID);
@@ -131,4 +139,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
