@@ -18,17 +18,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fengmap.android.FMMapSDK;
+
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
     Button forward_to_wifi_list;
+    Button forward_to_map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.wifi_list);
         setContentView(R.layout.home_page);
+
         forward_to_wifi_list = (Button) findViewById(R.id.forward_to_wifi_list) ;
         forward_to_wifi_list.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +40,15 @@ public class HomeActivity extends AppCompatActivity {
                 startActivityForResult(intent,0);
             }
         });
-    }
 
+        forward_to_map = (Button) findViewById(R.id.forward_to_map) ;
+        forward_to_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this,MapActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
+    }
 
 }
